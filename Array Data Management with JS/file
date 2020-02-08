@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<script>
+	
+	const inventors=[
+{first: 'Aswin',last:'Mohan',year:1997, passes:3000},
+{first: 'Arjun',last:'janan',year:1500, passes:2040},
+{first: 'Akhil',last:'Nakhash',year:1600, passes:2050},
+{first: 'Dilshad',last:'Faisy',year:1600, passes:2060},
+{first: 'Sreesh',last:'Bal',year:1997, passes:2070},
+
+	];
+
+	const people=['Arjun','amith','raju','kiran','raj','lalu','biju','ramu'];
+
+
+
+///Filter list of inventors for those who were born in 1500 using array filter function///
+
+const fifteen=inventors.filter(function(inventor)
+{
+	if (inventor.year >= 1500 && inventor.year<1600) {
+		return true;
+	}
+});
+console.table(fifteen);
+
+// Array prototype .map//
+//Give us an array of inventory first name and last name //
+
+const fullname=inventors.map(inventor => `${inventor.first}${inventor.last}`);
+
+console.table(fullname);
+
+//Array Prototype.sort()
+//Sort the inventors by birthdate,oldest to youngest
+
+const sort=inventors.sort(function(a,b)
+{
+
+	if (a.year >b.year) {
+		return 1;
+	}
+		else
+		{
+			return -1;
+		}
+
+	
+});
+
+console.table(sort);
+
+//Array prototype Reduce function
+//total years inventors lived
+
+const lived=inventors.reduce((total,inventor)=>{
+
+	return total +(inventor.passes-inventor.year);
+
+},0);
+
+console.log(lived);
+
+
+//Sort inventors by years lived//
+
+const oldest=inventors.sort(function(a,b){
+
+
+	const lastguy=a.passes -a.year;
+	const nextguy=b.passes -b.year;
+	return lastguy > nextguy ? -1 :1;
+});
+	console.table(oldest);
+
+
+	//create a list of bolevards in paris that contain 'de ' anywhere in the name 
+
+	const category=document.querySelector('.mw-category');
+ const links =Array.from(category.querySelectorAll('a'));
+const de=links
+ .map(link=>link.textContent)
+.filter(streetName =>streetName.includes('de'));
+
+
+//Sort people alphabetically by last name
+
+const alpha=people.sort(function(lastone,nextone)
+{
+
+const [alast,afirst]=lastone.split(',');
+const [blast,bfirst]=nextone.split(',');
+
+return alast > blast ? -1 :1;
+
+});
+
+console.log(alpha);
+
+
+//Reduce exercise
+//Sum up the instances of each of these
+
+const data=['car','car','truck','truck','walk'];
+
+const sum=data.reduce(function(obj,item)
+{
+	if (!obj[item]) {
+		obj[item]=0;
+	}
+	obj[item]++;
+	return obj;
+},{});
+
+console.log(sum);
+
+
+</script>
+</body>
+</html>
